@@ -91,4 +91,6 @@ function game(){
     return;
 }
 
+alert("This is a console game, please open the developer tools on your browser!");
+
 game();
