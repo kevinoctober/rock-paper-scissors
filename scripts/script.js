@@ -9,18 +9,16 @@ let playerScore = 0;
 function computerPlay(){
     const selection = ["rock", "paper", "scissors"];
     const compChoice = Math.floor(Math.random() * 3);
-    //console.log("Computer: " + selection[compChoice]); //testing
     return selection[compChoice];
 }
 
 // prompt user to enter a choice, check for validity
 function playerSelection(){
-    let playerChoice = prompt("Enter your selection: rock | paper | scissors."); 
+    const playerChoice = prompt("Enter your selection: rock | paper | scissors."); 
     if (!isValid(playerChoice)){
         alert("invalid input!");
-        playerSelection();
+        return playerSelection();
     }
-    //console.log("Player: " + playerChoice); //testing
     return playerChoice;
 }
 
@@ -34,9 +32,7 @@ function displayScore(){
     return "Computer " + computerScore + " | " + playerScore + " Player";
 }
 
-// play a single round. input parameters: playerselection, and computerSelection. 
-    // Output: eg) "you lose! Paper beats rock."
-    // playerSelection should be case insensitive.
+// play a single round. 
 function playRound(playerSelection, compSelection){
     if (rockREx.test(playerSelection)){
         if (rockREx.test(compSelection)){
@@ -88,6 +84,7 @@ function game(){
         result = "It's a tie.";
     }
     console.log("Game over. Final score:\n" + displayScore() + "\n" + result);
+    console.log("\nRefresh to play again");
     return;
 }
 
