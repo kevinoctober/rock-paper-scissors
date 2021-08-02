@@ -17,8 +17,7 @@ function computerPlay(){
 function playerSelection(){
     let playerChoice = prompt("Enter your selection: rock | paper | scissors."); 
     if (!isValid(playerChoice)){
-        alert("invalid input!");
-        playerSelection();
+        return alert("invalid input! Refresh the page to try again.");
     }
     //console.log("Player: " + playerChoice); //testing
     return playerChoice;
