@@ -9,7 +9,7 @@ let playerScore = 0;
 function computerPlay(){
     const selection = ["rock", "paper", "scissors"];
     const compChoice = Math.floor(Math.random() * 3);
-    console.log("Computer: " + selection[compChoice]); //testing
+    //console.log("Computer: " + selection[compChoice]); //testing
     return selection[compChoice];
 }
 
@@ -20,7 +20,7 @@ function playerSelection(){
         alert("invalid input!");
         playerSelection();
     }
-    console.log("Player: " + playerChoice); //testing
+    //console.log("Player: " + playerChoice); //testing
     return playerChoice;
 }
 
@@ -29,43 +29,66 @@ function isValid(str){
     return (rockREx.test(str) || paperREx.test(str) || scissorsREx.test(str));
 }
 
-// write a function that plays a single round. input parameters: playerselection,
-    // and computerSelection. Output: eg) "you lose! Paper beats rock."
+// function to display the current score
+function displayScore(){
+    return "Computer " + computerScore + " | " + playerScore + " Player";
+}
+
+// play a single round. input parameters: playerselection, and computerSelection. 
+    // Output: eg) "you lose! Paper beats rock."
     // playerSelection should be case insensitive.
 function playRound(playerSelection, compSelection){
     if (rockREx.test(playerSelection)){
         if (rockREx.test(compSelection)){
             return "It's a tie! Rock vs rock.";
         } else if (paperREx.test(compSelection)){
+            computerScore++;
             return "You lose! Paper beats rock.";
         } else {
+            playerScore++;
             return "You win! Rock beats scissors."
         }
     } else if (paperREx.test(playerSelection)){
         if (paperREx.test(compSelection)){
             return "It's a tie! Paper vs paper.";
         } else if (scissorsREx.test(compSelection)){
+            computerScore++;
             return "You lose! Scissors beats paper.";
         } else {
+            playerScore++;
             return "You win! Paper beats rock."
         }
     } else if (scissorsREx.test(playerSelection)){
         if (scissorsREx.test(compSelection)){
             return "It's a tie! Scissors vs scissors.";
         } else if (rockREx.test(compSelection)){
+            computerScore++;
             return "You lose! Rock beats scissors.";
         } else {
+            playerScore++;
             return "You win! Scissors beats paper."
         }
     }
 }
 
-// write function called game() to play five rounds, keep score and report the winner/loser
+// play five rounds, keep score and report the winner/loser
+function game(){
+    const numRounds = 5;
+    let result;
+    for (i = 1; i <= numRounds; i++){
+        console.log(playRound(playerSelection(), computerPlay()));
+        console.log(displayScore());
+    }
+    if (playerScore > computerScore){
+        result = "Player wins!";
+    } else if (computerScore > playerScore){
+        result = "Computer wins!";
+    }
+    else {
+        result = "It's a tie.";
+    }
+    console.log("Game over. Final score:\n" + displayScore() + "\n" + result);
+    return;
+}
 
-// TODO: edit playRound function to keep track of score
-
-// test functions
-//console.log(computerPlay());
-//console.log(playerSelection());
-console.log(playRound(playerSelection(), computerPlay()));
-//console.log(isValid(playerSelection()));
+game();
