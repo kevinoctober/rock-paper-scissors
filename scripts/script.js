@@ -1,6 +1,6 @@
-const rockREx = /rock/i;
-const paperREx = /paper/i;
-const scissorsREx = /scissors/i;
+const rockREx = /^rock$/i;
+const paperREx = /^paper$/i;
+const scissorsREx = /^scissors$/i;
 
 let computerScore = 0;
 let playerScore = 0;
@@ -22,17 +22,14 @@ function playerSelection(){
     return playerChoice;
 }
 
-// test validity of a string against regex
-function isValid(str){
-    return (rockREx.test(str) || paperREx.test(str) || scissorsREx.test(str));
+function isValid(userInput){
+    return (rockREx.test(userInput) || paperREx.test(userInput) || scissorsREx.test(userInput));
 }
 
-// function to display the current score
 function displayScore(){
     return "Computer " + computerScore + " | " + playerScore + " Player";
 }
-
-// play a single round. 
+ 
 function playRound(playerSelection, compSelection){
     if (rockREx.test(playerSelection)){
         if (rockREx.test(compSelection)){
